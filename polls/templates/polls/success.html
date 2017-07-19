@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
+<body>
+    <h1>恭喜{{user}}{{user.last_login}},登录成功！</h1>
+    <h1>权限:{{ perms.polls.change_user }}</h1>
+    <a href="{% url 'polls:home' %}">主页</a>
+    <a href="{% url 'polls:logout' %}">退出登录</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+   <style type="text/css">
+       body{color:#efd;background:#453;padding:0 5em;margin:0}
+       h1{padding:2em 1em;background:#675}
+       h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+       p{margin:1em 0}
+     </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+   <body>
+      <h1>登录页面：</h1>
+      <form name = "form" action = "" 
+         method = "POST" >{% csrf_token %}
+         
+         <!-- <div style = "max-width:470px;">
+            <center> 
+               <input type = "text" style = "margin-left:20%;" 
+                  placeholder = "Identifiant" name = "name" />
+            </center>
+         </div>
+			
+         <br>
+         
+         <div style = "max-width:470px;">
+            <center>
+               <input type = "password" style = "margin-left:20%;" 
+                  placeholder = "password" name = "password" />
+            </center>
+         </div>
+			
+         <br> -->
+         
+         {{ form.as_p }}
+
+         <div style = "max-width:470px;">
+            
+               <button type = "submit" 
+                  value = "Login" >
+                  <strong>Login</strong>
+               </button>
+
+         </div>
+         
+      </form>
+      
+   </body>
+</html> 
