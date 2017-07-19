@@ -28,4 +28,5 @@ user_obj = User.objects.get(username='yuanjie')
 print(dir(user_obj))
 p=user_obj.get_all_permissions()
 print(p)
+print(user_obj.check_password('yj123456'))
 

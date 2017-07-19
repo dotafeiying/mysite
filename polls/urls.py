@@ -22,7 +22,7 @@ app_name='polls'
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     # url(r'^$', views.index, name='index'),
-    url(r'^$', views.Indexview.as_view(), name='index'),
+    url(r'home/', views.Indexview.as_view(), name='index'),
     # url(r'^hello$', views.hello, name='hello'),
     # url(r'^([0-9]+)/$', views.detail, name='detail'),
     url(r'^(?P<pk>[0-9]+)/$', views.Detailview.as_view(), name='detail'),
@@ -32,5 +32,7 @@ urlpatterns = [
     url(r'^login/', views.login, name = 'login'),
     url(r'^success/', views.success, name = 'success'),
     url(r'^logout/', views.logout, name = 'logout'),
-    url(r'^home/', views.home, name='home')
+    url(r'^$', views.home, name='home'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^user/changepwd/$', views.ChangePassword, name='changepassword')
 ]

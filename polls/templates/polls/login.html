@@ -1,4 +1,36 @@
-<html>
+{% extends "polls/base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" role="form" action={% url "polls:login" %} method="POST" >
+    {% csrf_token %}
+
+        {% for item in form %}
+            <div class="form-group">
+                <label class="control-label col-md-1">{{item.label}}</label>
+                <div class="col-md-2">
+                    {{item}}
+                </div>
+                <div class="col-md-offset-1 col-md-10">
+                    {{item.errors}}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button type="submit" class="btn btn-success btn-sm">登 录</button>
+            <div>
+        </div>
+
+    </form>
+{% endblock %}
+
+<!-- <html>
    <style type="text/css">
        body{color:#efd;background:#453;padding:0 5em;margin:0}
        h1{padding:2em 1em;background:#675}
@@ -6,29 +38,11 @@
        p{margin:1em 0}
      </style>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}" />
    <body>
       <h1>登录页面：</h1>
       <form name = "form" action = "" 
          method = "POST" >{% csrf_token %}
-         
-         <!-- <div style = "max-width:470px;">
-            <center> 
-               <input type = "text" style = "margin-left:20%;" 
-                  placeholder = "Identifiant" name = "name" />
-            </center>
-         </div>
-			
-         <br>
-         
-         <div style = "max-width:470px;">
-            <center>
-               <input type = "password" style = "margin-left:20%;" 
-                  placeholder = "password" name = "password" />
-            </center>
-         </div>
-			
-         <br> -->
          
          {{ form.as_p }}
 
@@ -44,4 +58,5 @@
       </form>
       
    </body>
-</html> 
+</html>  -->
+

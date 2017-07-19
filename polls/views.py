@@ -6,7 +6,7 @@ from django.shortcuts import render,get_object_or_404,redirect,render_to_respons
 from .models import Question,Choice,User
 from django.urls import reverse
 from django.views.generic import ListView,DetailView
-from .forms import LoginForm
+from .forms import LoginForm,ChangePasswordForm
 from django.contrib import auth
 # from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -96,7 +96,7 @@ def login(request):
     return render(request, 'polls/login.html', {'form':MyLoginForm})
 
 @login_required
-@check_permission
+# @check_permission
 def success(request):
     # username=request.COOKIES.get('username','')
     # username=request.user
@@ -109,8 +109,27 @@ def logout(request):
     return redirect('polls:login')
     # return HttpResponse('sucess')
 
-@login_required
-@permission_required('polls.delete_user',raise_exception=True)
+# @login_required
+# @permission_required('polls.delete_user',raise_exception=True)
 def home(request):
     return render(request,'polls/home.html')
     # return render_to_response('polls/home.html')
+
+def about(request):
+    return render(request,'polls/about.html')
+
+@login_required
+def ChangePassword(request):
+    if request.method=='POST':
+        form = ChangePasswordForm(user=request.user,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('polls:logout'))
+    else:
+        form = ChangePasswordForm(user=request.user)
+
+    kwvars = {
+        'form':form,
+    }
+
+    return render(request,'polls/password_change.html',kwvars)
